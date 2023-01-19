@@ -48,8 +48,7 @@ export default class CubeNavigationHorizontal extends React.Component {
       });
       Animated.spring(this._animatedValue, {
         toValue: { x: goTo, y: 0 },
-        friction: 1000,
-        tension: 0.1,
+        bounciness:0,
         useNativeDriver:true
       }).start();
       setTimeout(() => {
@@ -81,7 +80,7 @@ export default class CubeNavigationHorizontal extends React.Component {
             this._animatedValue.setOffset({ x: - (this.fullWidth + width) });
           }
         }
-        Animated.event([null, { dx: this._animatedValue.x }],{useNativeDriver:true})(e, gestureState);
+        Animated.event([null, { dx: this._animatedValue.x }],{useNativeDriver:false})(e, gestureState);
       },
       onPanResponderRelease: (e, gestureState) => {
         onDoneSwiping(gestureState);
@@ -109,8 +108,7 @@ export default class CubeNavigationHorizontal extends React.Component {
     if (animated) {
       Animated.spring(this._animatedValue, {
         toValue: { x: this.pages[page], y: 0 },
-        friction: 1000,
-        tension: 0.1,
+        bounciness:0,
         useNativeDriver:true
       }).start();
     } else {
