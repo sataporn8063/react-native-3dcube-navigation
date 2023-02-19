@@ -242,7 +242,7 @@ export default class CubeNavigationHorizontal extends React.Component {
   render() {
     let expandStyle = this.props.expandView
       ? { top: -100, left: 0, width, height: height + 200 }
-      : { width, height };
+      : Platform.OS === 'android' ?{ width, height:height+StatusBar.currentHeight}:{ width, height };
 
     return (
       <Animated.View
@@ -255,7 +255,7 @@ export default class CubeNavigationHorizontal extends React.Component {
         <Animated.View
           style={[
             { backgroundColor: '#000', position: 'absolute', width, height },
-            expandStyle,{{height:Platform.OS === 'android'? height+StatusBar.currentHeight:height}}
+            expandStyle
           ]}
         >
           {this.props.children.map(this._renderChild)}
