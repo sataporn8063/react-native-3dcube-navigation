@@ -5,7 +5,8 @@ import {
   Animated,
   Dimensions,
   StyleSheet,
-  Platform
+  Platform,
+  StatusBar
 } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
@@ -254,7 +255,7 @@ export default class CubeNavigationHorizontal extends React.Component {
         <Animated.View
           style={[
             { backgroundColor: '#000', position: 'absolute', width, height },
-            expandStyle
+            expandStyle,{{height:Platform.OS === 'android'? height+StatusBar.currentHeight:height}}
           ]}
         >
           {this.props.children.map(this._renderChild)}
